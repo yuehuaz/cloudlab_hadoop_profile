@@ -80,8 +80,8 @@ cat > /usr/local/hadoop-2.7.3/etc/hadoop/yarn-site.xml <<EOF
 EOF
 fi
 
-mkdir -p /mnt/hadoop/mapred/local
-chmod -R 1777 /mnt/hadoop/mapred/
+mkdir -p /mnt/mapred/local
+chmod -R 1777 /mnt/mapred/
 
 if ! grep -q mapreduce.framework.name /usr/local/hadoop-2.7.3/etc/hadoop/mapred-site.xml; then
 cat > /usr/local/hadoop-2.7.3/etc/hadoop/mapred-site.xml <<EOF
@@ -112,7 +112,7 @@ cat > /usr/local/hadoop-2.7.3/etc/hadoop/mapred-site.xml <<EOF
   </property>
   <property>
     <name>mapreduce.cluster.local.dir</name>
-    <value>/mnt/hadoop/mapred/local</value>
+    <value>/mnt/mapred/local</value>
   </property>
 </configuration>
 EOF
