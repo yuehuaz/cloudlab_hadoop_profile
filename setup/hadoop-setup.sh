@@ -13,12 +13,19 @@ chmod 1777 /mnt/hadoop
 mkdir /dev/shm/hadoop
 chmod 1777 /dev/shm/hadoop
 
+mkdir /mnt/hadoop-tmp-dir
+chmod 1777 /mnt/hadoop-tmp-dir
+
 if ! grep -q fs.defaultFS /usr/local/hadoop-2.7.3/etc/hadoop/core-site.xml; then
 cat > /usr/local/hadoop-2.7.3/etc/hadoop/core-site.xml <<EOF
 <configuration>
   <property>
     <name>fs.defaultFS</name>
     <value>hdfs://namenode:9000/</value>
+  </property>
+  <property>
+    <name>hadoop.tmp.dir</name>
+    <value>/mnt/hadoop-tmp-dir</value>
   </property>
 </configuration>
 EOF
@@ -80,8 +87,8 @@ cat > /usr/local/hadoop-2.7.3/etc/hadoop/yarn-site.xml <<EOF
 EOF
 fi
 
-mkdir -p /mnt/mapred/local
-chmod -R 1777 /mnt/mapred/
+mkdir -p /mnt/hadoop-tmp-dir/mapred/local
+chmod 1777 /mnt/hadoop-tmp-dir/mapred/local
 
 if ! grep -q mapreduce.framework.name /usr/local/hadoop-2.7.3/etc/hadoop/mapred-site.xml; then
 cat > /usr/local/hadoop-2.7.3/etc/hadoop/mapred-site.xml <<EOF
@@ -109,10 +116,6 @@ cat > /usr/local/hadoop-2.7.3/etc/hadoop/mapred-site.xml <<EOF
   <property>
     <name>mapreduce.reduce.java.opts</name>
     <value>-Xmx49152m</value>
-  </property>
-  <property>
-    <name>mapreduce.cluster.local.dir</name>
-    <value>/mnt/mapred/local</value>
   </property>
 </configuration>
 EOF
