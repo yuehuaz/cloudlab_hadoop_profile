@@ -65,23 +65,27 @@ cat > /usr/local/hadoop-2.7.3/etc/hadoop/yarn-site.xml <<EOF
   </property>
   <property>
     <name>yarn.nodemanager.resource.memory-mb</name>
-    <value>122880</value>
+    <value>215040</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.resource.cpu-vcores</name>
+    <value>26</value>
   </property>
   <property>
     <name>yarn.scheduler.minimum-allocation-mb</name>
-    <value>30720</value>
+    <value>10240</value>
   </property>
   <property>
     <name>yarn.scheduler.maximum-allocation-mb</name>
-    <value>122880</value>
+    <value>40960</value>
   </property>
   <property>
-    <name>yarn.app.mapreduce.am.command-opts</name>
-    <value>-Xmx49152m</value>
+    <name>yarn.scheduler.maximum-allocation-vcores</name>
+    <value>4</value>
   </property>
   <property>
-    <name>yarn.app.mapreduce.am.resource.mb</name>
-    <value>61440</value>
+    <name>yarn.scheduler.minimum-allocation-vcores</name>
+    <value>1</value>
   </property>
 </configuration>
 EOF
@@ -102,12 +106,24 @@ cat > /usr/local/hadoop-2.7.3/etc/hadoop/mapred-site.xml <<EOF
     <value>0.0.0.0:19888</value>
   </property>
   <property>
+    <name>yarn.app.mapreduce.am.command-opts</name>
+    <value>-Xmx4096m</value>
+  </property>
+  <property>
+    <name>yarn.app.mapreduce.am.resource.mb</name>
+    <value>10240</value>
+  </property>
+  <property>
+    <name>yarn.app.mapreduce.am.resource.cpu-vcores</name>
+    <value>1</value>
+  </property>
+  <property>
     <name>mapreduce.map.memory.mb</name>
     <value>30720</value>
   </property>
   <property>
     <name>mapreduce.reduce.memory.mb</name>
-    <value>61440</value>
+    <value>40960</value>
   </property>
   <property>
     <name>mapreduce.map.java.opts</name>
@@ -115,7 +131,11 @@ cat > /usr/local/hadoop-2.7.3/etc/hadoop/mapred-site.xml <<EOF
   </property>
   <property>
     <name>mapreduce.reduce.java.opts</name>
-    <value>-Xmx49152m</value>
+    <value>-Xmx32768m</value>
+  </property>
+  <property>
+    <name>mapreduce.task.io.sort.mb</name>
+    <value>512</value>
   </property>
 </configuration>
 EOF
