@@ -65,11 +65,11 @@ cat > /usr/local/hadoop-2.7.3/etc/hadoop/yarn-site.xml <<EOF
   </property>
   <property>
     <name>yarn.nodemanager.resource.memory-mb</name>
-    <value>215040</value>
+    <value>133120</value>
   </property>
   <property>
     <name>yarn.nodemanager.resource.cpu-vcores</name>
-    <value>26</value>
+    <value>14</value>
   </property>
   <property>
     <name>yarn.scheduler.minimum-allocation-mb</name>
@@ -81,7 +81,7 @@ cat > /usr/local/hadoop-2.7.3/etc/hadoop/yarn-site.xml <<EOF
   </property>
   <property>
     <name>yarn.scheduler.maximum-allocation-vcores</name>
-    <value>4</value>
+    <value>3</value>
   </property>
   <property>
     <name>yarn.scheduler.minimum-allocation-vcores</name>
@@ -135,7 +135,7 @@ cat > /usr/local/hadoop-2.7.3/etc/hadoop/mapred-site.xml <<EOF
   </property>
   <property>
     <name>mapreduce.task.io.sort.mb</name>
-    <value>512</value>
+    <value>256</value>
   </property>
 </configuration>
 EOF
