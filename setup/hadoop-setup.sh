@@ -157,6 +157,9 @@ fi
 
 if hostname | grep -q namenode; then
     /usr/local/hadoop-2.7.3/bin/hdfs dfs -mkdir /user
+    /usr/local/hadoop-2.7.3/bin/hdfs dfs -mkdir /user/yuehuz
+    /usr/local/hadoop-2.7.3/bin/hdfs dfs -chown yuehuz /user/yuehuz
+    sudo -su yuehuz /usr/local/hadoop-2.7.3/bin/hdfs dfs -mkdir reads
     /usr/local/hadoop-2.7.3/bin/hdfs dfs -mkdir /tmp
     /usr/local/hadoop-2.7.3/bin/hdfs dfs -mkdir /tmp/hadoop-yarn
     /usr/local/hadoop-2.7.3/bin/hdfs dfs -mkdir /tmp/hadoop-yarn/staging
