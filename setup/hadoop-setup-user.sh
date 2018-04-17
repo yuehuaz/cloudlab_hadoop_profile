@@ -20,8 +20,6 @@ chown $user /mnt/hadoop-tmp-dir
 
 chown -R $user /usr/local/hadoop-2.7.3
 
-sudo -su $user
-
 sleep 10
 
 if ! grep -q fs.defaultFS /usr/local/hadoop-2.7.3/etc/hadoop/core-site.xml; then
@@ -152,24 +150,24 @@ sed -i orig -e 's@^export JAVA_HOME.*@export JAVA_HOME=/usr/lib/jvm/java-8-openj
 
 if hostname | grep -q namenode; then
     if ! test -d /mnt/hadoop/current; then
-        /usr/local/hadoop-2.7.3/bin/hadoop namenode -format
+        sudo -su $user /usr/local/hadoop-2.7.3/bin/hadoop namenode -format
     fi
-        /usr/local/hadoop-2.7.3/sbin/hadoop-daemon.sh --script hdfs start namenode
+        sudo -su $user /usr/local/hadoop-2.7.3/sbin/hadoop-daemon.sh --script hdfs start namenode
 elif hostname | grep -q resourcemanager; then
-    /usr/local/hadoop-2.7.3/sbin/yarn-daemon.sh start resourcemanager
+    sudo -su $user /usr/local/hadoop-2.7.3/sbin/yarn-daemon.sh start resourcemanager
 else
-    /usr/local/hadoop-2.7.3/sbin/yarn-daemon.sh start nodemanager
-    /usr/local/hadoop-2.7.3/sbin/hadoop-daemon.sh --script hdfs start datanode
+    sudo -su $user /usr/local/hadoop-2.7.3/sbin/yarn-daemon.sh start nodemanager
+    sudo -su $user /usr/local/hadoop-2.7.3/sbin/hadoop-daemon.sh --script hdfs start datanode
 fi
 
 if hostname | grep -q namenode; then
-    /usr/local/hadoop-2.7.3/bin/hdfs dfs -mkdir /user
-    /usr/local/hadoop-2.7.3/bin/hdfs dfs -mkdir /user/$user
-    /usr/local/hadoop-2.7.3/bin/hdfs dfs -mkdir reads
-    /usr/local/hadoop-2.7.3/bin/hdfs dfs -mkdir /tmp
-    /usr/local/hadoop-2.7.3/bin/hdfs dfs -mkdir /tmp/hadoop-yarn
-    /usr/local/hadoop-2.7.3/bin/hdfs dfs -mkdir /tmp/hadoop-yarn/staging
-    /usr/local/hadoop-2.7.3/bin/hdfs dfs -chmod 1777 /tmp
-    /usr/local/hadoop-2.7.3/bin/hdfs dfs -chmod 1777 /tmp/hadoop-yarn
-    /usr/local/hadoop-2.7.3/bin/hdfs dfs -chmod 1777 /tmp/hadoop-yarn/staging
+    sudo -su $user /usr/local/hadoop-2.7.3/bin/hdfs dfs -mkdir /user
+    sudo -su $user /usr/local/hadoop-2.7.3/bin/hdfs dfs -mkdir /user/$user
+    sudo -su $user /usr/local/hadoop-2.7.3/bin/hdfs dfs -mkdir reads
+    sudo -su $user /usr/local/hadoop-2.7.3/bin/hdfs dfs -mkdir /tmp
+    sudo -su $user /usr/local/hadoop-2.7.3/bin/hdfs dfs -mkdir /tmp/hadoop-yarn
+    sudo -su $user /usr/local/hadoop-2.7.3/bin/hdfs dfs -mkdir /tmp/hadoop-yarn/staging
+    sudo -su $user /usr/local/hadoop-2.7.3/bin/hdfs dfs -chmod 1777 /tmp
+    sudo -su $user /usr/local/hadoop-2.7.3/bin/hdfs dfs -chmod 1777 /tmp/hadoop-yarn
+    sudo -su $user /usr/local/hadoop-2.7.3/bin/hdfs dfs -chmod 1777 /tmp/hadoop-yarn/staging
 fi
