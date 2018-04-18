@@ -71,7 +71,7 @@ cat > /usr/local/hadoop-2.7.3/etc/hadoop/yarn-site.xml <<EOF
   </property>
   <property>
     <name>yarn.nodemanager.resource.memory-mb</name>
-    <value>133120</value>
+    <value>87040</value>
   </property>
   <property>
     <name>yarn.nodemanager.resource.cpu-vcores</name>
@@ -79,11 +79,11 @@ cat > /usr/local/hadoop-2.7.3/etc/hadoop/yarn-site.xml <<EOF
   </property>
   <property>
     <name>yarn.scheduler.minimum-allocation-mb</name>
-    <value>10240</value>
+    <value>11264</value>
   </property>
   <property>
     <name>yarn.scheduler.maximum-allocation-mb</name>
-    <value>40960</value>
+    <value>16384</value>
   </property>
   <property>
     <name>yarn.scheduler.maximum-allocation-vcores</name>
@@ -112,11 +112,11 @@ cat > /usr/local/hadoop-2.7.3/etc/hadoop/mapred-site.xml <<EOF
   </property>
   <property>
     <name>yarn.app.mapreduce.am.command-opts</name>
-    <value>-Xmx4096m</value>
+    <value>-Xmx10240m</value>
   </property>
   <property>
     <name>yarn.app.mapreduce.am.resource.mb</name>
-    <value>10240</value>
+    <value>15360</value>
   </property>
   <property>
     <name>yarn.app.mapreduce.am.resource.cpu-vcores</name>
@@ -124,19 +124,19 @@ cat > /usr/local/hadoop-2.7.3/etc/hadoop/mapred-site.xml <<EOF
   </property>
   <property>
     <name>mapreduce.map.memory.mb</name>
-    <value>30720</value>
+    <value>10240</value>
   </property>
   <property>
     <name>mapreduce.reduce.memory.mb</name>
-    <value>40960</value>
+    <value>15360</value>
   </property>
   <property>
     <name>mapreduce.map.java.opts</name>
-    <value>-Xmx24576m</value>
+    <value>-Xmx8192m</value>
   </property>
   <property>
     <name>mapreduce.reduce.java.opts</name>
-    <value>-Xmx32768m</value>
+    <value>-Xmx12288m</value>
   </property>
   <property>
     <name>mapreduce.task.io.sort.mb</name>
